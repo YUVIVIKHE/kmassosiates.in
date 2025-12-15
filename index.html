@@ -1,1284 +1,337 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kiran Mohite & Associates — Structural Consultant</title>
-  <meta name="description" content="Kiran Mohite & Associates — Structural Engineering | Pune" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    /* Reset + base */
-    :root{
-      --blue:#0f4fa8;
-      --blue-dark:#0a3d7a;
-      --blue-light:#1b6fd6;
-      --gold:#d97706;
-      --gold-light:#f59e0b;
-      --muted:#6b7280;
-      --muted-light:#9ca3af;
-      --bg:#f7f7fb;
-      --bg-gradient:linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --success:#10b981;
-      --shadow-sm:0 2px 8px rgba(0,0,0,0.08);
-      --shadow-md:0 8px 30px rgba(8,20,50,0.06);
-      --shadow-lg:0 12px 40px rgba(8,20,50,0.12);
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      margin:0;
-      font-family:'Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;
-      background:var(--bg);
-      color:#0b1220;
-      line-height:1.6;
-      overflow-x:hidden;
-    }
-    a{color:inherit;text-decoration:none;transition:all 0.3s ease}
-    .container{max-width:1200px;margin:0 auto;padding:28px}
-    
-    /* Header with sticky effect */
-    header{
-      background:#fff;
-      border-radius:16px;
-      padding:20px 28px;
-      display:flex;
-      align-items:center;
-      gap:18px;
-      box-shadow:var(--shadow-md);
-      position:sticky;
-      top:20px;
-      z-index:50;
-      backdrop-filter:blur(10px);
-      transition:all 0.3s ease;
-    }
-    header:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
-    .logo{display:flex;gap:14px;align-items:center}
-    .logo img{
-      height:72px;
-      width:72px;
-      object-fit:contain;
-      border-radius:8px;
-      box-shadow:var(--shadow-sm);
-      transition:transform 0.3s ease;
-    }
-    .logo:hover img{transform:scale(1.05) rotate(2deg)}
-    nav{margin-left:auto;display:flex;gap:8px;align-items:center}
-    nav a{
-      padding:8px 16px;
-      font-weight:600;
-      color:var(--muted);
-      border-radius:8px;
-      transition:all 0.3s ease;
-      position:relative;
-    }
-    nav a:hover{
-      color:var(--blue);
-      background:#f3f6ff;
-      transform:translateY(-2px);
-    }
-    nav a::after{
-      content:'';
-      position:absolute;
-      bottom:4px;
-      left:50%;
-      transform:translateX(-50%) scaleX(0);
-      width:60%;
-      height:2px;
-      background:var(--blue);
-      transition:transform 0.3s ease;
-    }
-    nav a:hover::after{transform:translateX(-50%) scaleX(1)}
-    
-    /* Mobile menu */
-    .menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
-    .menu-toggle span{width:25px;height:3px;background:var(--blue);border-radius:2px;transition:all 0.3s ease}
-
-    /* Hero with gradient background */
-    .hero{
-      display:grid;
-      grid-template-columns:1fr 430px;
-      gap:26px;
-      margin:32px 0;
-      align-items:center;
-      position:relative;
-    }
-    .hero::before{
-      content:'';
-      position:absolute;
-      top:-50px;
-      left:-50px;
-      width:300px;
-      height:300px;
-      background:radial-gradient(circle, rgba(15,79,168,0.1) 0%, transparent 70%);
-      border-radius:50%;
-      z-index:-1;
-      animation:float 6s ease-in-out infinite;
-    }
-    @keyframes float{
-      0%,100%{transform:translate(0,0) scale(1);}
-      50%{transform:translate(20px,-20px) scale(1.1);}
-    }
-    .hero-card{
-      background:linear-gradient(135deg, #fff 0%, #f8fafc 100%);
-      padding:40px;
-      border-radius:20px;
-      box-shadow:var(--shadow-lg);
-      transform:translateY(0);
-      overflow:hidden;
-      position:relative;
-      border:1px solid rgba(15,79,168,0.1);
-    }
-    .hero-card::before{
-      content:'';
-      position:absolute;
-      top:0;
-      left:0;
-      right:0;
-      height:4px;
-      background:linear-gradient(90deg, var(--blue), var(--gold));
-    }
-    h1{
-      margin:0 0 12px;
-      font-size:36px;
-      letter-spacing:0.5px;
-      background:linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-      font-weight:800;
-    }
-    .tag{
-      color:var(--muted);
-      margin-bottom:20px;
-      font-size:15px;
-      line-height:1.7;
-    }
-    .cta{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      background:linear-gradient(135deg, var(--blue), var(--blue-light));
-      color:#fff;
-      padding:14px 28px;
-      border-radius:12px;
-      font-weight:700;
-      box-shadow:0 4px 15px rgba(15,79,168,0.3);
-      transition:all 0.3s ease;
-      position:relative;
-      overflow:hidden;
-    }
-    .cta::before{
-      content:'';
-      position:absolute;
-      top:0;
-      left:-100%;
-      width:100%;
-      height:100%;
-      background:linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition:left 0.5s ease;
-    }
-    .cta:hover{
-      transform:translateY(-3px);
-      box-shadow:0 6px 20px rgba(15,79,168,0.4);
-    }
-    .cta:hover::before{left:100%}
-    .cta i{font-size:14px}
-
-    /* Quick facts with icons */
-    .facts{
-      display:flex;
-      gap:12px;
-      margin-top:24px;
-      flex-wrap:wrap;
-    }
-    .fact{
-      background:linear-gradient(135deg, #f3f6ff 0%, #e8f0fe 100%);
-      padding:16px;
-      border-radius:12px;
-      flex:1;
-      min-width:120px;
-      text-align:center;
-      border:1px solid rgba(15,79,168,0.1);
-      transition:all 0.3s ease;
-    }
-    .fact:hover{
-      transform:translateY(-4px);
-      box-shadow:var(--shadow-md);
-      background:linear-gradient(135deg, #e8f0fe 0%, #dbeafe 100%);
-    }
-    .fact strong{
-      display:block;
-      font-size:24px;
-      color:var(--blue);
-      margin-bottom:4px;
-    }
-    .fact small{color:var(--muted);font-size:12px}
-
-    /* Technology & Expertise section */
-    .tech-section{
-      margin:40px 0;
-    }
-    .tech-section .card > div > div{
-      cursor:pointer;
-    }
-    .tech-section .card > div > div:hover{
-      transform:translateY(-6px);
-      box-shadow:var(--shadow-md);
-      border-color:var(--blue);
-    }
-    .tech-section .card > div > div:hover i{
-      transform:scale(1.1);
-      color:var(--gold);
-    }
-    .tech-section .card > div > div i{
-      transition:all 0.3s ease;
-    }
-
-    /* About & Services */
-    .about{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:24px;
-      margin-bottom:32px;
-    }
-    .card{
-      background:#fff;
-      padding:32px;
-      border-radius:16px;
-      box-shadow:var(--shadow-md);
-      transition:all 0.3s ease;
-      border:1px solid rgba(0,0,0,0.05);
-    }
-    .card:hover{
-      transform:translateY(-4px);
-      box-shadow:var(--shadow-lg);
-    }
-    .card h3{
-      font-size:24px;
-      margin-bottom:16px;
-      color:var(--blue);
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .card h3 i{
-      color:var(--gold);
-      font-size:20px;
-    }
-    .services ul{
-      padding-left:20px;
-      list-style:none;
-    }
-    .services ul li{
-      padding:8px 0;
-      padding-left:28px;
-      position:relative;
-      transition:all 0.3s ease;
-    }
-    .services ul li::before{
-      content:'✓';
-      position:absolute;
-      left:0;
-      color:var(--success);
-      font-weight:bold;
-      font-size:18px;
-    }
-    .services ul li:hover{
-      color:var(--blue);
-      transform:translateX(5px);
-    }
-
-    /* Projects gallery with overlay */
-    .gallery{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-      gap:16px;
-      margin-top:20px;
-    }
-    .gallery-item{
-      position:relative;
-      border-radius:12px;
-      overflow:hidden;
-      cursor:pointer;
-      aspect-ratio:4/3;
-      box-shadow:var(--shadow-md);
-      transition:all 0.3s ease;
-    }
-    .gallery-item:hover{
-      transform:translateY(-8px) scale(1.02);
-      box-shadow:var(--shadow-lg);
-    }
-    .gallery-item img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      transition:transform 0.5s ease;
-    }
-    .gallery-item:hover img{
-      transform:scale(1.1);
-    }
-    .gallery-overlay{
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
-      opacity:0;
-      transition:opacity 0.3s ease;
-      display:flex;
-      align-items:flex-end;
-      padding:20px;
-      color:#fff;
-    }
-    .gallery-item:hover .gallery-overlay{opacity:1}
-
-    /* Process/Workflow section */
-    .process-section{
-      margin:40px 0;
-    }
-    .process-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
-      gap:24px;
-      margin-top:30px;
-    }
-    .process-item{
-      background:#fff;
-      padding:30px;
-      border-radius:16px;
-      box-shadow:var(--shadow-md);
-      text-align:center;
-      position:relative;
-      transition:all 0.3s ease;
-      border-top:4px solid var(--blue);
-    }
-    .process-item:hover{
-      transform:translateY(-6px);
-      box-shadow:var(--shadow-lg);
-    }
-    .process-number{
-      position:absolute;
-      top:-20px;
-      left:50%;
-      transform:translateX(-50%);
-      width:40px;
-      height:40px;
-      background:linear-gradient(135deg, var(--blue), var(--blue-light));
-      color:#fff;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:bold;
-      font-size:20px;
-      box-shadow:0 4px 15px rgba(15,79,168,0.3);
-    }
-    .process-item h4{
-      margin-top:20px;
-      margin-bottom:12px;
-      color:var(--blue);
-      font-size:20px;
-    }
-
-    /* Testimonials */
-    .testimonials{
-      margin:40px 0;
-    }
-    .testimonial-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
-      gap:24px;
-      margin-top:30px;
-    }
-    .testimonial-card{
-      background:#fff;
-      padding:30px;
-      border-radius:16px;
-      box-shadow:var(--shadow-md);
-      position:relative;
-      border-left:4px solid var(--gold);
-    }
-    .testimonial-card::before{
-      content:'"';
-      position:absolute;
-      top:10px;
-      left:20px;
-      font-size:60px;
-      color:var(--gold);
-      opacity:0.2;
-      font-family:serif;
-    }
-    .testimonial-text{
-      font-style:italic;
-      margin-bottom:20px;
-      color:var(--muted);
-      line-height:1.8;
-    }
-    .testimonial-author{
-      font-weight:bold;
-      color:var(--blue);
-    }
-
-    /* FAQ Section */
-    .faq-section{
-      margin:40px 0;
-    }
-    .faq-item{
-      background:#fff;
-      margin-bottom:16px;
-      border-radius:12px;
-      box-shadow:var(--shadow-sm);
-      overflow:hidden;
-      transition:all 0.3s ease;
-    }
-    .faq-question{
-      padding:20px;
-      cursor:pointer;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      font-weight:600;
-      color:var(--blue);
-      transition:all 0.3s ease;
-    }
-    .faq-question:hover{
-      background:#f3f6ff;
-    }
-    .faq-question i{
-      transition:transform 0.3s ease;
-    }
-    .faq-item.active .faq-question i{
-      transform:rotate(180deg);
-    }
-    .faq-answer{
-      max-height:0;
-      overflow:hidden;
-      transition:max-height 0.3s ease;
-      padding:0 20px;
-    }
-    .faq-item.active .faq-answer{
-      max-height:500px;
-      padding:0 20px 20px;
-    }
-
-    /* Founder bio */
-    .founder{
-      display:flex;
-      gap:24px;
-      align-items:flex-start;
-    }
-    .founder img{
-      width:160px;
-      height:180px;
-      object-fit:cover;
-      border-radius:12px;
-      box-shadow:var(--shadow-md);
-      transition:transform 0.3s ease;
-    }
-    .founder:hover img{
-      transform:scale(1.05);
-    }
-
-    /* Contact form */
-    .contact-form{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:20px;
-      margin-top:24px;
-    }
-    .form-group{
-      grid-column:span 1;
-    }
-    .form-group.full{
-      grid-column:span 2;
-    }
-    .form-group input,
-    .form-group textarea{
-      width:100%;
-      padding:14px;
-      border:2px solid #e5e7eb;
-      border-radius:10px;
-      font-family:inherit;
-      font-size:15px;
-      transition:all 0.3s ease;
-    }
-    .form-group input:focus,
-    .form-group textarea:focus{
-      outline:none;
-      border-color:var(--blue);
-      box-shadow:0 0 0 3px rgba(15,79,168,0.1);
-    }
-    .form-group textarea{
-      resize:vertical;
-      min-height:120px;
-    }
-
-    footer{
-      margin-top:40px;
-      padding:30px;
-      border-radius:16px;
-      background:linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-      color:#fff;
-      box-shadow:var(--shadow-lg);
-    }
-    .footer-content{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:20px;
-      flex-wrap:wrap;
-    }
-    .social-links{
-      display:flex;
-      gap:16px;
-    }
-    .social-links a{
-      width:40px;
-      height:40px;
-      background:rgba(255,255,255,0.1);
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:all 0.3s ease;
-    }
-    .social-links a:hover{
-      background:var(--blue);
-      transform:translateY(-3px);
-    }
-
-    /* Animations */
-    .reveal{
-      opacity:0;
-      transform:translateY(30px);
-      transition:all 0.8s cubic-bezier(0.2,0.9,0.2,1);
-    }
-    .reveal.visible{
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    /* Responsive */
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr}
-      .gallery{grid-template-columns:repeat(2,1fr)}
-      .about{grid-template-columns:1fr}
-      .contact-form{grid-template-columns:1fr}
-      .form-group.full{grid-column:span 1}
-      nav{display:none}
-      .menu-toggle{display:flex}
-    }
-    @media (max-width:520px){
-      .gallery{grid-template-columns:1fr}
-      .logo img{height:56px;width:56px}
-      h1{font-size:28px}
-      .process-grid{grid-template-columns:1fr}
-    }
-
-    /* Lightbox */
-    .lightbox{
-      position:fixed;
-      inset:0;
-      background:rgba(3,6,23,0.9);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:100;
-      padding:20px;
-      opacity:0;
-      pointer-events:none;
-      transition:opacity 0.3s ease;
-      backdrop-filter:blur(5px);
-    }
-    .lightbox.show{
-      opacity:1;
-      pointer-events:auto;
-    }
-    .lightbox img{
-      max-width:95%;
-      max-height:90%;
-      border-radius:12px;
-      box-shadow:0 20px 60px rgba(0,0,0,0.5);
-    }
-    .lightbox-close{
-      position:absolute;
-      top:20px;
-      right:20px;
-      color:#fff;
-      font-size:32px;
-      cursor:pointer;
-      width:50px;
-      height:50px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:rgba(255,255,255,0.1);
-      border-radius:50%;
-      transition:all 0.3s ease;
-    }
-    .lightbox-close:hover{
-      background:rgba(255,255,255,0.2);
-      transform:rotate(90deg);
-    }
-
-    /* Scroll to top button */
-    .scroll-top{
-      position:fixed;
-      bottom:30px;
-      right:30px;
-      width:50px;
-      height:50px;
-      background:linear-gradient(135deg, var(--blue), var(--blue-light));
-      color:#fff;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      opacity:0;
-      pointer-events:none;
-      transition:all 0.3s ease;
-      box-shadow:0 4px 15px rgba(15,79,168,0.3);
-      z-index:40;
-    }
-    .scroll-top.visible{
-      opacity:1;
-      pointer-events:auto;
-    }
-    .scroll-top:hover{
-      transform:translateY(-5px);
-      box-shadow:0 6px 20px rgba(15,79,168,0.4);
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>KMA — Structural Consultant</title>
+  <meta name="description" content="Kiran Mohite & Associates | Structural engineering, design review, prestressed concrete, construction support.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-  <div class="container">
-    <header class="reveal">
-      <div class="logo">
-        <img src="assets/logo.jpg" alt="KMA logo" id="siteLogo" />
-        <div>
-          <div style="font-weight:800;color:var(--blue);font-size:20px;">Kiran Mohite & Associates</div>
-          <div style="font-size:13px;color:var(--muted)">Structural Consultants — Pune</div>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.jpg" alt="KMA logo">
+        <div class="brand-text">
+          <div class="overline">Structural Consultant</div>
+          <strong>Kiran Mohite & Associates</strong>
+          <small class="brand-tagline">KMA – Trusted Structural Partner with 25+ Years of Excellence</small>
         </div>
-      </div>
-      <nav id="mainNav">
-        <a href="#about"><i class="fas fa-info-circle"></i> About</a>
-        <a href="#services"><i class="fas fa-cogs"></i> Services</a>
-        <a href="#projects"><i class="fas fa-building"></i> Projects</a>
-        <a href="#founder"><i class="fas fa-users"></i> Team</a>
-        <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="team.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="clients.html">Clients</a>
+        <a href="site-visits.html">Training & Site Visits</a>
+        <a href="contact.html">Contact</a>
       </nav>
-      <div class="menu-toggle" id="menuToggle">
-        <span></span>
-        <span></span>
-        <span></span>
+      <button class="menu-toggle" data-nav-toggle aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
       </div>
     </header>
 
-    <section class="hero">
-      <div class="hero-card reveal">
-        <h1>Kiran Mohite & Associates (KMA)</h1>
-        <div class="tag">Structural engineering — design, peer review, prestressed concrete & construction support</div>
-        <p>KMA is a structural engineering firm with 25+ years of experience delivering efficient, safe and cost-effective structural solutions for residential high-rise towers, commercial buildings and industrial projects.</p>
-        <div class="facts">
-          <div class="fact">
-            <i class="fas fa-award" style="color:var(--gold);font-size:24px;margin-bottom:8px;"></i>
-            <strong>25+</strong><small> yrs experience</small>
-          </div>
-          <div class="fact">
-            <i class="fas fa-building" style="color:var(--blue);font-size:24px;margin-bottom:8px;"></i>
-            <strong>High-rise</strong><small> Residential & Commercial</small>
-          </div>
-          <div class="fact">
-            <i class="fas fa-laptop-code" style="color:var(--success);font-size:24px;margin-bottom:8px;"></i>
-            <strong>Design</strong><small> ETABS, STAAD, RCDC</small>
-          </div>
-        </div>
-        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
-          <a class="cta" href="#contact"><i class="fas fa-phone"></i> Request Consultation</a>
-          <a class="cta" href="#projects" style="background:linear-gradient(135deg, var(--gold), var(--gold-light));box-shadow:0 4px 15px rgba(217,119,6,0.3);"><i class="fas fa-eye"></i> View Projects</a>
-        </div>
-      </div>
-
-      <div class="card reveal" style="height:100%">
-        <h3 style="margin-top:0"><i class="fas fa-list-check"></i> Scope highlights</h3>
-        <div class="tag">Preliminary → Detailed → Construction Support → Approvals</div>
-        <div id="scopeList">
-          <strong style="display:block;margin-top:16px;color:var(--blue);"><i class="fas fa-lightbulb"></i> Preliminary</strong>
-          <ul style="margin-top:8px;margin-bottom:16px;">
-            <li>Review architectural design, propose structural systems, prepare DBR</li>
-          </ul>
-          <strong style="display:block;color:var(--blue);"><i class="fas fa-drafting-compass"></i> Detailed design</strong>
-          <ul style="margin-top:8px;margin-bottom:16px;">
-            <li>Foundation, columns, beam & slab layouts, reinforcement detailing (GFC + DWG)</li>
-          </ul>
-          <strong style="display:block;color:var(--blue);"><i class="fas fa-hard-hat"></i> Construction support</strong>
-          <ul style="margin-top:8px;">
-            <li>RFIs, site visits, shop drawing checks, site reports</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Technology & Expertise Section -->
-    <section class="tech-section reveal">
-      <div class="card" style="background:linear-gradient(135deg, #f8fafc 0%, #e8f0fe 100%);border:2px solid rgba(15,79,168,0.1);">
-        <h3 style="text-align:center;margin-bottom:10px;color:var(--blue);"><i class="fas fa-laptop-code"></i> Technology & Software Expertise</h3>
-        <p class="tag" style="text-align:center;margin-bottom:30px;">Industry-leading tools for precision engineering</p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:20px;margin-top:30px;">
-          <div style="background:#fff;padding:24px;border-radius:12px;text-align:center;box-shadow:var(--shadow-sm);transition:all 0.3s ease;border:1px solid rgba(15,79,168,0.1);">
-            <i class="fas fa-cube" style="font-size:36px;color:var(--blue);margin-bottom:12px;"></i>
-            <h4 style="color:var(--blue);margin-bottom:8px;">ETABS</h4>
-            <p style="color:var(--muted);font-size:14px;">Advanced building analysis & design</p>
-          </div>
-          <div style="background:#fff;padding:24px;border-radius:12px;text-align:center;box-shadow:var(--shadow-sm);transition:all 0.3s ease;border:1px solid rgba(15,79,168,0.1);">
-            <i class="fas fa-calculator" style="font-size:36px;color:var(--blue);margin-bottom:12px;"></i>
-            <h4 style="color:var(--blue);margin-bottom:8px;">STAAD-Pro</h4>
-            <p style="color:var(--muted);font-size:14px;">Structural analysis & design software</p>
-          </div>
-          <div style="background:#fff;padding:24px;border-radius:12px;text-align:center;box-shadow:var(--shadow-sm);transition:all 0.3s ease;border:1px solid rgba(15,79,168,0.1);">
-            <i class="fas fa-drafting-compass" style="font-size:36px;color:var(--blue);margin-bottom:12px;"></i>
-            <h4 style="color:var(--blue);margin-bottom:8px;">RCDC</h4>
-            <p style="color:var(--muted);font-size:14px;">Reinforced concrete design & detailing</p>
-          </div>
-          <div style="background:#fff;padding:24px;border-radius:12px;text-align:center;box-shadow:var(--shadow-sm);transition:all 0.3s ease;border:1px solid rgba(15,79,168,0.1);">
-            <i class="fas fa-layer-group" style="font-size:36px;color:var(--blue);margin-bottom:12px;"></i>
-            <h4 style="color:var(--blue);margin-bottom:8px;">SAFE</h4>
-            <p style="color:var(--muted);font-size:14px;">Slab & foundation analysis</p>
-          </div>
-          <div style="background:#fff;padding:24px;border-radius:12px;text-align:center;box-shadow:var(--shadow-sm);transition:all 0.3s ease;border:1px solid rgba(15,79,168,0.1);">
-            <i class="fas fa-draw-polygon" style="font-size:36px;color:var(--blue);margin-bottom:12px;"></i>
-            <h4 style="color:var(--blue);margin-bottom:8px;">AutoCAD</h4>
-            <p style="color:var(--muted);font-size:14px;">Technical drawing & documentation</p>
-          </div>
-          <div style="background:#fff;padding:24px;border-radius:12px;text-align:center;box-shadow:var(--shadow-sm);transition:all 0.3s ease;border:1px solid rgba(15,79,168,0.1);">
-            <i class="fas fa-file-alt" style="font-size:36px;color:var(--blue);margin-bottom:12px;"></i>
-            <h4 style="color:var(--blue);margin-bottom:8px;">Draft-win</h4>
-            <p style="color:var(--muted);font-size:14px;">Reinforcement detailing software</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="about">
-      <div class="card reveal">
-        <h3><i class="fas fa-building"></i> About KMA</h3>
-        <p>Established by Er. Kiran K. Mohite and Er. Shubhangi K. Mohite, KMA provides structural engineering services including structural design, peer review and prestressed concrete design. They focus on delivering projects on time with maximum quality across residential, commercial and industrial sectors.</p>
-        <p style="color:var(--muted);margin-top:16px;padding:16px;background:#f9fafb;border-radius:8px;border-left:4px solid var(--blue);">
-          <i class="fas fa-map-marker-alt" style="color:var(--blue);margin-right:8px;"></i>
-          <strong>Office:</strong> Office No-702, SNo- 6/10/13, Brahma Vantage Bldg, Bavdhan, Pune - 411021
-        </p>
-      </div>
-      <div class="card services reveal">
-        <h3 id="services"><i class="fas fa-cogs"></i> Services & Codes</h3>
-        <ul>
-          <li>Preliminary structural concepts & DBR</li>
-          <li>Detailed GFC drawings (DWG + PDF)</li>
-          <li>Seismic compliance & tall building design</li>
-          <li>Coordination with Architects, MEP & HVAC</li>
-          <li>Submission/Approvals & certification</li>
-        </ul>
-        <p style="margin-top:16px;padding:12px;background:#f0f9ff;border-radius:8px;color:var(--blue);">
-          <i class="fas fa-book" style="margin-right:8px;"></i>
-          <strong>Codes used:</strong> IS 456-2000, IS 1893-2016, IS 16700-2023, IS 13920-2016, IS 875-1987.
-        </p>
-      </div>
-    </section>
-
-    <!-- Process/Workflow Section -->
-    <section class="process-section reveal">
-      <div class="card">
-        <h3 style="text-align:center;margin-bottom:10px;"><i class="fas fa-project-diagram"></i> Our Process</h3>
-        <p class="tag" style="text-align:center;margin-bottom:30px;">From concept to completion — a structured approach</p>
-        <div class="process-grid">
-          <div class="process-item">
-            <div class="process-number">1</div>
-            <i class="fas fa-search" style="font-size:32px;color:var(--blue);margin-top:10px;"></i>
-            <h4>Analysis & Planning</h4>
-            <p style="color:var(--muted);font-size:14px;">Review architectural plans, site conditions, and project requirements</p>
-          </div>
-          <div class="process-item">
-            <div class="process-number">2</div>
-            <i class="fas fa-drafting-compass" style="font-size:32px;color:var(--blue);margin-top:10px;"></i>
-            <h4>Design & Engineering</h4>
-            <p style="color:var(--muted);font-size:14px;">Create detailed structural designs using advanced software tools</p>
-          </div>
-          <div class="process-item">
-            <div class="process-number">3</div>
-            <i class="fas fa-check-circle" style="font-size:32px;color:var(--blue);margin-top:10px;"></i>
-            <h4>Review & Approval</h4>
-            <p style="color:var(--muted);font-size:14px;">Peer review, code compliance checks, and regulatory approvals</p>
-          </div>
-          <div class="process-item">
-            <div class="process-number">4</div>
-            <i class="fas fa-hard-hat" style="font-size:32px;color:var(--blue);margin-top:10px;"></i>
-            <h4>Construction Support</h4>
-            <p style="color:var(--muted);font-size:14px;">Ongoing site visits, RFI responses, and quality assurance</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="card reveal">
-      <h3><i class="fas fa-building"></i> Selected Projects</h3>
-      <p class="tag">Completed and in-hand projects — gallery below</p>
-      <div class="gallery" id="gallery">
-        <div class="gallery-item">
-          <img src="assets/prj-1.png" alt="Project 1" data-full="assets/prj-1.png">
-          <div class="gallery-overlay">
-            <div>
-              <strong>Residential High-Rise</strong>
-              <p style="font-size:12px;margin-top:4px;">Pune, Maharashtra</p>
-            </div>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/prj-2.png" alt="Project 2" data-full="assets/prj-2.png">
-          <div class="gallery-overlay">
-            <div>
-              <strong>Commercial Complex</strong>
-              <p style="font-size:12px;margin-top:4px;">Pune, Maharashtra</p>
-            </div>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/prj-3.png" alt="Project 3" data-full="assets/prj-3.png">
-          <div class="gallery-overlay">
-            <div>
-              <strong>Residential Tower</strong>
-              <p style="font-size:12px;margin-top:4px;">Pune, Maharashtra</p>
-            </div>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/prj-4.png" alt="Project 4" data-full="assets/prj-4.png">
-          <div class="gallery-overlay">
-            <div>
-              <strong>Mixed-Use Development</strong>
-              <p style="font-size:12px;margin-top:4px;">Pune, Maharashtra</p>
-            </div>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/prj-5.png" alt="Project 5" data-full="assets/prj-5.png">
-          <div class="gallery-overlay">
-            <div>
-              <strong>Residential Complex</strong>
-              <p style="font-size:12px;margin-top:4px;">Pune, Maharashtra</p>
-            </div>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/prj-6.png" alt="Project 6" data-full="assets/prj-6.png">
-          <div class="gallery-overlay">
-            <div>
-              <strong>High-Rise Residential</strong>
-              <p style="font-size:12px;margin-top:4px;">Pune, Maharashtra</p>
-            </div>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/prj-7.png" alt="Project 7" data-full="assets/prj-7.png">
-          <div class="gallery-overlay">
-            <div>
-              <strong>Commercial Building</strong>
-              <p style="font-size:12px;margin-top:4px;">Pune, Maharashtra</p>
-            </div>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/prj-8.png" alt="Project 8" data-full="assets/prj-8.png">
-          <div class="gallery-overlay">
-            <div>
-              <strong>Residential Project</strong>
-              <p style="font-size:12px;margin-top:4px;">Pune, Maharashtra</p>
-            </div>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/prj-9.png" alt="Project 9" data-full="assets/prj-9.png">
-          <div class="gallery-overlay">
-            <div>
-              <strong>Structural Design</strong>
-              <p style="font-size:12px;margin-top:4px;">Pune, Maharashtra</p>
-            </div>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/prj-10.png" alt="Project 10" data-full="assets/prj-10.png">
-          <div class="gallery-overlay">
-            <div>
-              <strong>High-Rise Tower</strong>
-              <p style="font-size:12px;margin-top:4px;">Pune, Maharashtra</p>
-            </div>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/prj-11.png" alt="Project 11" data-full="assets/prj-11.png">
-          <div class="gallery-overlay">
-            <div>
-              <strong>Residential Development</strong>
-              <p style="font-size:12px;margin-top:4px;">Pune, Maharashtra</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <small style="color:var(--muted);display:block;text-align:center;margin-top:16px;"><i class="fas fa-info-circle"></i> Click images to enlarge</small>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials reveal">
-      <div class="card">
-        <h3 style="text-align:center;margin-bottom:10px;"><i class="fas fa-quote-left"></i> Client Testimonials</h3>
-        <p class="tag" style="text-align:center;margin-bottom:30px;">What our clients say about us</p>
-        <div class="testimonial-grid">
-          <div class="testimonial-card">
-            <div class="testimonial-text">
-              KMA delivered exceptional structural design services for our high-rise project. Their attention to detail and timely delivery exceeded our expectations.
-            </div>
-            <div class="testimonial-author">
-              <i class="fas fa-user-circle" style="margin-right:8px;"></i>
-              — Real Estate Developer, Pune
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <div class="testimonial-text">
-              Professional, reliable, and technically sound. The team at KMA provided excellent support throughout the construction phase with quick RFI responses.
-            </div>
-            <div class="testimonial-author">
-              <i class="fas fa-user-circle" style="margin-right:8px;"></i>
-              — Construction Company, Maharashtra
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <div class="testimonial-text">
-              Their expertise in tall building design and code compliance helped us navigate complex regulatory requirements smoothly. Highly recommended!
-            </div>
-            <div class="testimonial-author">
-              <i class="fas fa-user-circle" style="margin-right:8px;"></i>
-              — Architect, Pune
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="founder" class="card reveal" style="margin-top:32px">
-      <h3><i class="fas fa-user-tie"></i> Founder — Er. Kiran K. Mohite</h3>
-      <div class="founder">
-        <img src="assets/Kiran K. Mohite .png" alt="Kiran K. Mohite">
+  <main>
+    <section class="hero construction-hero brand-hero">
+      <div class="hero-anim hero-grid"></div>
+      <div class="hero-anim hero-pulse"></div>
+      <div class="hero-anim hero-dots"></div>
+      <div class="hero-anim hero-sweep"></div>
+      <div class="wrap">
         <div>
-          <p><strong style="color:var(--blue);font-size:18px;">Kiran K. Mohite</strong> — Pursued his Master's in Structural Engineering [M.E. Structure] from Pune University. Founder & Design Head with experience designing and handling a wide variety of structures, including residential high-rise towers and commercial buildings, industrial plants, temporary structures, telecom towers, and concrete structure design. He strongly believes in the timely delivery of projects with maximum quality.</p>
-          <p style="color:var(--muted);margin-top:12px;padding:12px;background:#f9fafb;border-radius:8px;">
-            <i class="fas fa-id-card" style="color:var(--blue);margin-right:8px;"></i>
-            <strong>License No:</strong> STATE/R/2024/APL/09882
-          </p>
-          <p style="color:var(--muted);margin-top:12px;">
-            <i class="fas fa-tools" style="color:var(--gold);margin-right:8px;"></i>
-            <strong>Skills:</strong> ETABS, STAAD-Pro, RCDC, Draft-win, AutoCAD
-          </p>
-          <p style="color:var(--muted);margin-top:12px;">
-            <i class="fas fa-phone" style="color:var(--success);margin-right:8px;"></i>
-            <strong>Contact:</strong> <a href="tel:+919850075871" style="color:var(--blue);">+91 9850075871</a> • 
-            <a href="mailto:kiranmohiteassociates@gmail.com" style="color:var(--blue);">kiranmohiteassociates@gmail.com</a>
-          </p>
+          <div class="hero-logo" data-reveal>
+            <div class="logo-orb"></div>
+            <img src="assets/logo.jpg" alt="KMA logo">
+            <div class="logo-text">
+              <strong>Kiran Mohite & Associates</strong>
+              <small>KMA — Structural Consultant</small>
+            </div>
+          </div>
+          <span class="pill"><i class="fas fa-building"></i> Pune · Structural Engineering</span>
+          <h1>Kiran Mohite And Associates (KMA)</h1>
+          <p style="font-style:italic;color:rgba(255,255,255,0.9);">“KMA – Trusted Structural Partner with 25+ Years of Excellence”</p>
+          <p>Kiran Mohite And Associates (KMA) is a premier structural engineering consultancy founded by Kiran K. Mohite and Shubhangi K. Mohite. With over 25 years of expertise, we deliver innovative, reliable, and cost-effective engineering solutions across diverse sectors.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;">
+            <a class="btn primary" href="services.html"><i class="fas fa-cogs"></i> View services</a>
+            <a class="btn ghost" href="projects.html"><i class="fas fa-eye"></i> Projects gallery</a>
+          </div>
+        </div>
+        <div class="card hero-info-card" data-rotate>
+          <div class="overline" style="color:rgba(255,255,255,0.7);">At a glance</div>
+          <div class="info-block">
+            <h3>🔧 Our Core Services</h3>
+            <ul>
+              <li>Structural Design – optimized for safety, efficiency, and long-term durability</li>
+              <li>Structural Peer Review – ensuring compliance, accuracy, and value-driven outcomes</li>
+              <li>Prestressed Concrete Design – advanced engineering for complex, high-load structures</li>
+            </ul>
+          </div>
+          <div class="info-block">
+            <h3>🏗️ Our Experience</h3>
+            <p>We have successfully completed a wide range of projects, including:</p>
+            <ul>
+              <li>Residential high-rise towers – modern, sustainable living environments</li>
+              <li>Commercial buildings – efficient, durable, and economically optimized designs</li>
+            </ul>
+          </div>
+          <div class="info-block">
+            <h3>🎯 Our Commitment</h3>
+            <p>We combine technical precision with practical innovation to deliver solutions that meet client expectations while setting benchmarks in quality and reliability. Every project reflects our dedication to efficiency, economy, and engineering excellence.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="card reveal" style="margin-top:24px" id="cofounder">
-      <h3><i class="fas fa-user-graduate"></i> Co‑Founder — Er. Shubhangi K. Mohite</h3>
-      <div class="founder">
-        <img src="assets/Shubhangi K. Mohite.png" alt="Shubhangi K. Mohite">
+    <section class="section">
+      <div class="wrap">
+        <div class="section-header">
+          <div>
+            <div class="overline">About us</div>
+            <h2 class="section-title">Hands-on structural leadership</h2>
+          </div>
+          <a class="btn secondary" href="team.html">Meet the founders</a>
+        </div>
+        <div class="contact-grid">
+          <div class="card" style="display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;">
+            <img src="assets/Kiran%20K.%20Mohite%20.png" alt="Er. Kiran K. Mohite" style="width:120px;border-radius:12px;box-shadow:var(--shadow-sm);">
+            <div style="flex:1;min-width:200px;">
+              <div class="overline">Founder & Managing Director</div>
+              <h3 style="margin:6px 0 8px;font-family:'Playfair Display',serif;">Er. Kiran K. Mohite</h3>
+              <p style="color:var(--muted);margin:0 0 8px;">25+ years leading design delivery from concept to GFC with safety, economy, and schedule focus.</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:13px;">
+                <span class="badge">ETABS · STAAD-Pro</span>
+                <span class="badge">RCDC · Draft-win</span>
+                <span class="badge">Site coordination</span>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;">
+            <img src="assets/Shubhangi%20K.%20Mohite.png" alt="Er. Shubhangi K. Mohite" style="width:120px;border-radius:12px;box-shadow:var(--shadow-sm);">
+            <div style="flex:1;min-width:200px;">
+              <div class="overline">Co-founder & Director</div>
+              <h3 style="margin:6px 0 8px;font-family:'Playfair Display',serif;">Er. Shubhangi K. Mohite</h3>
+              <p style="color:var(--muted);margin:0 0 8px;">Analysis lead for towers up to 250m, aligning seismic/wind performance with buildable details.</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:13px;">
+                <span class="badge">ETABS · SAFE</span>
+                <span class="badge">RCDC · Draft-win</span>
+                <span class="badge">Client coordination</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h3 style="margin:0 0 10px;font-family:'Playfair Display',serif;">Built by practicing engineers</h3>
+            <p style="color:var(--muted);margin:0 0 12px;">Kiran Mohite And Associates (KMA) is a premier structural engineering consultancy founded by Kiran K. Mohite and Shubhangi K. Mohite. With over 25 years of expertise, we deliver innovative, reliable, and cost-effective engineering solutions across diverse sectors.</p>
+            <ul style="margin:0 0 0 18px;color:var(--muted);line-height:1.7;">
+              <li>25+ years of structural design and peer review across Maharashtra</li>
+              <li>Tall buildings, mixed-use, industrial, villas, and infrastructure</li>
+              <li>Direct access to decision makers; fast RFIs and constructability checks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-header">
+          <div>
+            <div class="overline">Expertise</div>
+            <h2 class="section-title">Where we add value</h2>
+      </div>
+          <a class="btn secondary" href="services.html">Go to services page</a>
+      </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3><i class="fas fa-lightbulb"></i> Early engagement</h3>
+            <p>Structural system studies, DBR and design development to align cost, safety and schedule.</p>
+          </div>
+          <div class="feature-card">
+            <h3><i class="fas fa-drafting-compass"></i> Detailed engineering</h3>
+            <p>GFC drawings (DWG/PDF), tall building design, seismic and wind compliance, PT/PSC where it fits.</p>
+          </div>
+          <div class="feature-card">
+            <h3><i class="fas fa-check-circle"></i> Peer review</h3>
+            <p>Independent proof checking for safety, economy and code alignment across towers and industrial assets.</p>
+          </div>
+          <div class="feature-card">
+            <h3><i class="fas fa-hard-hat"></i> Construction support</h3>
+            <p>RFIs, site visits, shop drawing checks and quick clarifications to keep execution moving.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background:linear-gradient(120deg,#eef2ff,#f8fafc);">
+      <div class="wrap">
+        <div class="section-header">
+            <div>
+            <div class="overline">Featured Work</div>
+            <h2 class="section-title">Projects from the KMA portfolio</h2>
+            </div>
+          <a class="btn primary" href="projects.html">Full gallery</a>
+          </div>
+        <div class="project-grid">
+          <div class="project-card" data-lightbox="kma%20project%20photos/VTP_VOLARE_HINJEWADI.jpeg" data-caption="VTP Volare · Hinjewadi">
+            <img src="kma%20project%20photos/VTP_VOLARE_HINJEWADI.jpeg" alt="VTP Volare Hinjewadi">
+            <div class="overlay">
+              <div class="tag"><i class="fas fa-building"></i> Residential high-rise</div>
+              <small>Performance-based design + construction support</small>
+        </div>
+            </div>
+          <div class="project-card" data-lightbox="kma%20project%20photos/ATLANTIC_CHARAOLI.jpeg" data-caption="Atlantic · Charaoli">
+            <img src="kma%20project%20photos/ATLANTIC_CHARAOLI.jpeg" alt="Atlantic Charaoli">
+            <div class="overlay">
+              <div class="tag"><i class="fas fa-city"></i> Mixed use</div>
+              <small>Design + proof checking</small>
+          </div>
+        </div>
+          <div class="project-card" data-lightbox="kma%20project%20photos/ALIBAUG_BUNGALOW.jpeg" data-caption="Alibaug Bungalow">
+            <img src="kma%20project%20photos/ALIBAUG_BUNGALOW.jpeg" alt="Alibaug Bungalow">
+            <div class="overlay">
+              <div class="tag"><i class="fas fa-house-chimney"></i> Villas</div>
+              <small>Detailing + site coordination</small>
+            </div>
+          </div>
+          <div class="project-card" data-lightbox="kma%20project%20photos/VJD_ETERNITY_MAAN.jpeg" data-caption="VJD Eternity · Maan">
+            <img src="kma%20project%20photos/VJD_ETERNITY_MAAN.jpeg" alt="VJD Eternity Maan">
+            <div class="overlay">
+              <div class="tag"><i class="fas fa-industry"></i> Residential cluster</div>
+              <small>GFC, seismic checks, RFI closure</small>
+        </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="section" id="clients" style="background:linear-gradient(120deg,#f8fafc,#eef2ff);">
+      <div class="wrap">
+        <div class="section-header">
+            <div>
+            <div class="overline">Clients</div>
+            <h2 class="section-title">Trusted by leading developers</h2>
+            </div>
+          </div>
+        <div class="client-grid">
+          <div class="client-card"><img src="kma%20client%20logos/WhatsApp%20Image%202025-12-10%20at%202.26.08%20PM.jpeg" alt="Client logo"></div>
+          <div class="client-card"><img src="kma%20client%20logos/WhatsApp%20Image%202025-12-10%20at%202.32.22%20PM.jpeg" alt="Client logo"></div>
+          <div class="client-card"><img src="kma%20client%20logos/WhatsApp%20Image%202025-12-10%20at%202.34.15%20PM.jpeg" alt="Client logo"></div>
+          <div class="client-card"><img src="kma%20client%20logos/WhatsApp%20Image%202025-12-10%20at%202.35.29%20PM.jpeg" alt="Client logo"></div>
+          <div class="client-card"><img src="kma%20client%20logos/WhatsApp%20Image%202025-12-10%20at%202.49.08%20PM.jpeg" alt="Client logo"></div>
+          <div class="client-card"><img src="kma%20client%20logos/WhatsApp%20Image%202025-12-10%20at%202.53.58%20PM.jpeg" alt="Client logo"></div>
+          <div class="client-card"><img src="kma%20client%20logos/WhatsApp%20Image%202025-12-10%20at%202.56.18%20PM.jpeg" alt="Client logo"></div>
+          <div class="client-card"><img src="kma%20client%20logos/WhatsApp%20Image%202025-12-10%20at%202.56.43%20PM.jpeg" alt="Client logo"></div>
+        </div>
+            </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap cta-band">
         <div>
-          <p><strong style="color:var(--blue);font-size:18px;">Shubhangi K. Mohite</strong> — Co-Founder & Analysis Head. She completed her Civil Engineering from the Government College of Engineering, Karad. Her expertise is in the analysis and design of all kinds of structures including high-rise residential and commercial towers up to a height of 250m.</p>
-          <p style="color:var(--muted);margin-top:12px;padding:12px;background:#f9fafb;border-radius:8px;">
-            <i class="fas fa-laptop-code" style="color:var(--blue);margin-right:8px;"></i>
-            <strong>Software Expertise:</strong> She has vast experience in handling analysis and design software like ETABS, SAFE, RCDC, Draft-win, STAAD-Pro, etc.
-          </p>
-          <p style="color:var(--muted);margin-top:12px;">
-            <i class="fas fa-handshake" style="color:var(--gold);margin-right:8px;"></i>
-            She has extensive client co-ordination experience and brings expertise in analysis-driven design optimization, tall-building behavior assessment, and ensuring structural safety & code compliance.
-          </p>
+          <div class="overline" style="color:rgba(255,255,255,0.8);">Codes, tools and assurance</div>
+          <h3 style="margin:10px 0;font-family:'Playfair Display',serif;font-size:26px;">ETABS · STAAD-Pro · SAFE · RCDC · Draft-win · AutoCAD</h3>
+          <p style="color:rgba(255,255,255,0.9);margin-bottom:12px;">We design to IS 456, IS 1893:2025, IS 16700, IS 13920, IS 875 with tall building and PSC experience across Maharashtra.</p>
+          <div class="badge-row">
+            <div class="badge">Proof checking</div>
+            <div class="badge">Value engineering</div>
+            <div class="badge">BIM ready outputs</div>
+            </div>
+            </div>
+        <div class="card" style="border-color:rgba(255,255,255,0.2);box-shadow:none;">
+          <div class="overline">Need quick support?</div>
+          <p style="color:var(--muted);">Call +91 9850075871 or drop a note. We respond within one business day.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
+            <a class="btn primary" href="contact.html"><i class="fas fa-envelope"></i> Contact page</a>
+            <a class="btn secondary" href="tel:+919850075871"><i class="fas fa-phone"></i> Call now</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="faq-section reveal">
+    <section class="section">
+      <div class="wrap">
+        <div class="section-header">
+        <div>
+            <div class="overline">Next steps</div>
+            <h2 class="section-title">Connect With KMA – Your Trusted Structural Partner</h2>
+        </div>
+      </div>
+        <div class="contact-grid">
       <div class="card">
-        <h3 style="text-align:center;margin-bottom:10px;"><i class="fas fa-question-circle"></i> Frequently Asked Questions</h3>
-        <p class="tag" style="text-align:center;margin-bottom:30px;">Common questions about our services</p>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            <span>What types of projects does KMA handle?</span>
-            <i class="fas fa-chevron-down"></i>
+            <div class="overline">Quick intro</div>
+            <h3 style="margin:10px 0;font-family:'Playfair Display',serif;">Tell us about your project</h3>
+            <p style="color:var(--muted);">Our team of experts is ready to provide innovative, code-compliant, and reliable engineering solutions. Reach out today to discuss your project with confidence.</p>
+            <form data-contact-form class="contact-form" style="margin-top:12px;">
+              <input class="input" name="name" placeholder="Name" required>
+              <input class="input" name="email" type="email" placeholder="Email" required>
+              <input class="input" name="phone" placeholder="Phone">
+              <input class="input" name="subject" placeholder="Subject">
+              <textarea class="input" name="message" placeholder="Project brief" rows="4" required></textarea>
+              <div class="status" data-status></div>
+              <button class="btn primary" type="submit">Send via email</button>
+            </form>
           </div>
-          <div class="faq-answer">
-            <p style="color:var(--muted);padding-top:10px;">KMA specializes in residential high-rise towers, commercial buildings, industrial projects, and complex structures up to 250m height. We handle everything from preliminary design to construction support.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            <span>What software tools does KMA use?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p style="color:var(--muted);padding-top:10px;">We use industry-standard software including ETABS, STAAD-Pro, RCDC, SAFE, Draft-win, and AutoCAD for structural analysis, design, and detailing.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            <span>What codes and standards does KMA follow?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p style="color:var(--muted);padding-top:10px;">We strictly adhere to Indian Standards including IS 456-2000 (Concrete), IS 1893-2016 (Seismic), IS 16700-2023 (Tall Buildings), IS 13920-2016 (Ductile Detailing), and IS 875-1987 (Wind Loads).</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            <span>Does KMA provide construction support services?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p style="color:var(--muted);padding-top:10px;">Yes, we provide comprehensive construction support including site visits, RFI responses, shop drawing reviews, and quality assurance throughout the construction phase.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            <span>How can I request a consultation?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p style="color:var(--muted);padding-top:10px;">You can contact us via phone at +91 9850075871, email at kiranmohiteassociates@gmail.com, or use the contact form below. We typically respond within 24 hours.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="card reveal" style="margin-top:32px">
-      <h3><i class="fas fa-envelope"></i> Contact Us</h3>
-      <p class="tag">Get in touch for your structural engineering needs</p>
-      
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:30px;">
-        <div>
-          <h4 style="color:var(--blue);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
-            <i class="fas fa-map-marker-alt"></i> Office Address
-          </h4>
-          <p style="color:var(--muted);line-height:1.8;margin-bottom:24px;">
-            Office No-702, SNo- 6/10/13,<br>
-            Brahma Vantage Bldg, Bavdhan,<br>
-            Pune - 411021<br>
-            Maharashtra, India
-          </p>
-          
-          <div style="margin-bottom:24px;border-radius:12px;overflow:hidden;box-shadow:var(--shadow-sm);">
+          <div class="card">
+            <div class="overline">Offline details</div>
+            <h3 style="margin:10px 0;font-family:'Playfair Display',serif;">Visit or call</h3>
+            <p style="color:var(--muted);margin-bottom:12px;">
+              Office No-702, SNo-6/10/13, Brahma Vantage Bldg,<br>
+              Bavdhan, Pune - 411021, Maharashtra
+            </p>
+            <div style="margin:14px 0;border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);">
             <iframe 
               src="https://www.google.com/maps?q=18.5224167,73.7798611&hl=en&z=16&output=embed" 
-              width="100%" 
-              height="250" 
-              style="border:0;" 
+                width="100%" height="240" style="border:0;"
               allowfullscreen="" 
               loading="lazy" 
               referrerpolicy="no-referrer-when-downgrade"
               title="KMA Office Location">
             </iframe>
           </div>
-          <p style="color:var(--muted);font-size:12px;margin-top:8px;text-align:center;">
-            <i class="fas fa-map-pin" style="color:var(--blue);margin-right:4px;"></i>
-            Coordinates: 18°31'20.7"N 73°46'47.5"E
-          </p>
-          
-          <h4 style="color:var(--blue);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
-            <i class="fas fa-phone"></i> Contact Information
-          </h4>
-          <p style="color:var(--muted);line-height:1.8;margin-bottom:12px;">
-            <strong>Phone:</strong> <a href="tel:+919850075871" style="color:var(--blue);">+91 9850075871</a>
-          </p>
-          <p style="color:var(--muted);line-height:1.8;margin-bottom:24px;">
-            <strong>Email:</strong> <a href="mailto:kiranmohiteassociates@gmail.com" style="color:var(--blue);">kiranmohiteassociates@gmail.com</a>
-          </p>
-          
-          <div style="margin-top:30px;">
-            <a class="cta" href="mailto:kiranmohiteassociates@gmail.com" style="display:inline-flex;">
-              <i class="fas fa-paper-plane"></i> Send Email
-            </a>
+            <p style="color:var(--muted);font-size:12px;margin-bottom:12px;">
+              <i class="fas fa-map-pin" style="margin-right:6px;"></i> 18°31'20.7"N 73°46'47.5"E · Bavdhan, Pune
+            </p>
+            <p style="color:var(--muted);"><strong>Phone:</strong> <a href="tel:+919850075871">+91 9850075871</a></p>
+            <p style="color:var(--muted);"><strong>Email:</strong> <a href="mailto:kiranmohiteassociates@gmail.com">kiranmohiteassociates@gmail.com</a></p>
+            <div style="margin-top:14px;">
+              <a class="btn secondary" href="https://www.google.com/maps?q=18.5224167,73.7798611" target="_blank" rel="noreferrer"><i class="fas fa-map-marker-alt"></i> Open map</a>
           </div>
         </div>
-        
-        <div>
-          <h4 style="color:var(--blue);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
-            <i class="fas fa-paper-plane"></i> Send a Message
-          </h4>
-          <form class="contact-form" onsubmit="handleFormSubmit(event)">
-            <div class="form-group">
-              <input type="text" placeholder="Your Name" required>
-            </div>
-            <div class="form-group">
-              <input type="email" placeholder="Your Email" required>
-            </div>
-            <div class="form-group">
-              <input type="tel" placeholder="Phone Number">
-            </div>
-            <div class="form-group">
-              <input type="text" placeholder="Subject" required>
-            </div>
-            <div class="form-group full">
-              <textarea placeholder="Your Message" required></textarea>
-            </div>
-            <div class="form-group full">
-              <button type="submit" class="cta" style="width:100%;justify-content:center;border:none;cursor:pointer;">
-                <i class="fas fa-paper-plane"></i> Send Message
-              </button>
-            </div>
-          </form>
         </div>
       </div>
     </section>
+  </main>
 
-    <footer class="reveal">
-      <div class="footer-content">
+  <footer>
+    <div class="wrap footer-row">
         <div>
-          <div style="font-weight:bold;margin-bottom:8px;font-size:18px;">Kiran Mohite & Associates</div>
-          <div style="opacity:0.8;margin-bottom:16px;">Structural Engineering Consultants — Pune, Maharashtra</div>
-          <div style="opacity:0.7;font-size:14px;">© 2024 Kiran Mohite & Associates. All rights reserved.</div>
+        <div class="overline" style="color:#cbd5f5;">Kiran Mohite & Associates</div>
+        <div style="font-weight:700;margin-top:6px;">Structural engineering consultants · Pune</div>
+        <small style="color:#9ca3af;">© 2025 KMA. All rights reserved.</small>
         </div>
-        <div>
-          <div style="margin-bottom:12px;font-weight:600;">Connect with us</div>
-          <div class="social-links">
+      <div class="social">
             <a href="mailto:kiranmohiteassociates@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
             <a href="tel:+919850075871" title="Phone"><i class="fas fa-phone"></i></a>
             <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
             <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-          </div>
         </div>
       </div>
     </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="close" type="button" data-lightbox-close><i class="fas fa-times"></i></button>
+    <div style="text-align:center;">
+      <img id="lightboxImg" src="" alt="Project image">
+      <div class="caption" id="lightboxCaption"></div>
+  </div>
   </div>
 
-  <!-- Lightbox element -->
-  <div id="lightbox" class="lightbox" onclick="hideLightbox(event)">
-    <div class="lightbox-close" onclick="hideLightbox(event)"><i class="fas fa-times"></i></div>
-    <img id="lightboxImg" src="" alt="Project Image">
-  </div>
-
-  <!-- Scroll to top button -->
-  <div class="scroll-top" id="scrollTop" onclick="scrollToTop()">
-    <i class="fas fa-arrow-up"></i>
-  </div>
-
-  <script>
-    // Reveal on scroll
-    const revealEls = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting) {
-          e.target.classList.add('visible');
-        }
-      });
-    },{threshold:0.1});
-    revealEls.forEach(el=>io.observe(el));
-
-    // Smooth nav
-    document.querySelectorAll('nav a, .cta[href^="#"]').forEach(a=>{
-      a.addEventListener('click',e=>{
-        const href = a.getAttribute('href');
-        if(href.startsWith('#')){
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if(target){
-            target.scrollIntoView({behavior:'smooth', block:'start'});
-          }
-        }
-      });
-    });
-
-    // Lightbox functionality
-    document.querySelectorAll('.gallery-item img').forEach(img=>{
-      img.addEventListener('click',()=>{
-        showLightbox(img.src);
-      });
-    });
-    
-    function showLightbox(src){
-      document.getElementById('lightboxImg').src = src;
-      document.getElementById('lightbox').classList.add('show');
-      document.body.style.overflow = 'hidden';
-    }
-    
-    function hideLightbox(e){
-      if(e && e.target === e.currentTarget || e.target.closest('.lightbox-close')){
-        document.getElementById('lightbox').classList.remove('show');
-        document.body.style.overflow = '';
-      }
-    }
-
-    // FAQ Toggle
-    function toggleFaq(element){
-      const faqItem = element.closest('.faq-item');
-      const isActive = faqItem.classList.contains('active');
-      
-      // Close all FAQ items
-      document.querySelectorAll('.faq-item').forEach(item=>{
-        item.classList.remove('active');
-      });
-      
-      // Open clicked item if it wasn't active
-      if(!isActive){
-        faqItem.classList.add('active');
-      }
-    }
-
-    // Scroll to top button
-    const scrollTopBtn = document.getElementById('scrollTop');
-    window.addEventListener('scroll',()=>{
-      if(window.pageYOffset > 300){
-        scrollTopBtn.classList.add('visible');
-      } else {
-        scrollTopBtn.classList.remove('visible');
-      }
-    });
-    
-    function scrollToTop(){
-      window.scrollTo({top:0, behavior:'smooth'});
-    }
-
-    // Form submission handler
-    function handleFormSubmit(e){
-      e.preventDefault();
-      const form = e.target;
-      const formData = new FormData(form);
-      
-      // Get form values
-      const name = form.querySelector('input[type="text"]').value;
-      const email = form.querySelector('input[type="email"]').value;
-      const phone = form.querySelector('input[type="tel"]').value;
-      const subject = form.querySelectorAll('input[type="text"]')[1].value;
-      const message = form.querySelector('textarea').value;
-      
-      // Create mailto link
-      const mailtoLink = `mailto:kiranmohiteassociates@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`)}`;
-      window.location.href = mailtoLink;
-      
-      // Show success message (optional)
-      alert('Opening your email client... Please send the message to complete your inquiry.');
-    }
-
-    // Mobile menu toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const mainNav = document.getElementById('mainNav');
-    
-    if(menuToggle){
-      menuToggle.addEventListener('click',()=>{
-        mainNav.style.display = mainNav.style.display === 'flex' ? 'none' : 'flex';
-        menuToggle.classList.toggle('active');
-      });
-    }
-
-    // Close mobile menu on window resize
-    window.addEventListener('resize',()=>{
-      if(window.innerWidth > 900){
-        mainNav.style.display = '';
-      }
-    });
-  </script>
+  <script src="assets/main.js"></script>
 </body>
 </html>
