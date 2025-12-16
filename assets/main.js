@@ -1,5 +1,93 @@
 (function(){
-  // Mobile nav removed (static nav)
+  // Suppress browser extension errors
+  window.addEventListener('error', function(e) {
+    // Suppress errors from browser extensions
+    if (e.filename && (
+      e.filename.includes('content-all.js') ||
+      e.filename.includes('extension://') ||
+      e.filename.includes('chrome-extension://') ||
+      e.filename.includes('moz-extension://')
+    )) {
+      e.preventDefault();
+      return true;
+    }
+    // Suppress specific extension-related errors
+    if (e.message && (
+      e.message.includes('Cannot find menu item') ||
+      e.message.includes('save-page')
+    )) {
+      e.preventDefault();
+      return true;
+    }
+  }, true);
+
+  // Suppress unhandled promise rejections from extensions
+  window.addEventListener('unhandledrejection', function(e) {
+    // Suppress AbortError from media autoplay (usually from extensions)
+    if (e.reason && (
+      e.reason.name === 'AbortError' ||
+      (e.reason.message && e.reason.message.includes('play() request was interrupted'))
+    )) {
+      e.preventDefault();
+      return true;
+    }
+  });
+
+  // Mobile navigation toggle
+  (function initMobileNav() {
+    const navToggle = document.querySelector('[data-nav-toggle]');
+    const navLinks = document.getElementById('navLinks');
+    
+    if (!navToggle || !navLinks) {
+      console.warn('Mobile nav elements not found');
+      return;
+    }
+    
+    // Set initial aria-expanded state
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('type', 'button');
+    
+    // Toggle menu on button click
+    navToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const isCurrentlyOpen = navLinks.classList.contains('show');
+      
+      if (isCurrentlyOpen) {
+        navLinks.classList.remove('show');
+        navToggle.setAttribute('aria-expanded', 'false');
+      } else {
+        navLinks.classList.add('show');
+        navToggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+    
+    // Close menu when clicking on a nav link
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function() {
+        navLinks.classList.remove('show');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+    
+    // Close menu when clicking outside (only on mobile)
+    document.addEventListener('click', function(e) {
+      if (window.innerWidth <= 900 && navLinks.classList.contains('show')) {
+        if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+          navLinks.classList.remove('show');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      }
+    }, true);
+    
+    // Close menu on window resize if switching to desktop
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 900) {
+        navLinks.classList.remove('show');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
 
   // Contact forms -> mailto
   document.querySelectorAll('[data-contact-form]').forEach(form=>{
